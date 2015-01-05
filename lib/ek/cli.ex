@@ -7,13 +7,17 @@ defmodule Ek.CLI do
 
   def parse_args(argv) do
     parse = OptionParser.parse(argv,
-                               switches: [ help: :boolean],
-                               aliases:  [ h:    :help])
-
+                               switches: [help: :boolean],
+                               aliases:  [h: :help, b: :bin, t: :test])
     case parse do
-      { [ help: true ] } -> :help
+      {[help: true], _, _} -> :help
+      {opts, [name|_], _}  -> {name, opts}
       _ -> :help
     end
+  end
+
+  def process(name, opts) do
+    Ek.generate_pkg(name, opts)
   end
 
   def process(:help) do
@@ -27,7 +31,7 @@ defmodule Ek.CLI do
 
     Creates a skeleton for creating an emacs package
     """
-    System.halt(0)
+    exit {:shutdown, 1}
   end
 
 end
