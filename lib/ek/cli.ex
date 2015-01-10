@@ -1,6 +1,6 @@
 defmodule Ek.CLI do
 
-  def run(argv) do
+  def main(argv) do
     parse_args(argv)
     |> process
   end
@@ -17,14 +17,14 @@ defmodule Ek.CLI do
     end
   end
 
-  def process(name, opts) do
+  def process({name, opts}) do
     Ek.generate_pkg(name, opts)
   end
 
   def process(:help) do
     IO.write """
     usage:
-      ek new PATH [OPTIONS]
+      ek PATH [OPTIONS]
 
     Options:
       -b, --bin   Generate a binary directory for your package

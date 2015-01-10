@@ -1,5 +1,4 @@
 defmodule Ek do
-
   import Mix.Generator
 
   def generate_pkg(path, opts) do

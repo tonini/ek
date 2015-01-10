@@ -5,6 +5,7 @@ defmodule Ek.Mixfile do
     [app: :ek,
      version: "0.0.1",
      elixir: "~> 1.1-dev",
+     escript: escript_config,
      deps: deps]
   end
 
@@ -12,7 +13,7 @@ defmodule Ek.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :mix]]
   end
 
   # Dependencies can be Hex packages:
@@ -26,5 +27,9 @@ defmodule Ek.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     []
+  end
+
+  defp escript_config do
+    [ main_module: Ek.CLI ]
   end
 end

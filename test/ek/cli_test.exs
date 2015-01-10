@@ -1,7 +1,7 @@
 defmodule CLITest do
   use ExUnit.Case
 
-  import Ek.CLI, only: [ parse_args: 1, run: 1 ]
+  import Ek.CLI, only: [ parse_args: 1, main: 1 ]
 
   test ":help returned by option parsing with -h and --help options" do
     assert parse_args(["-h"])     == :help
@@ -9,7 +9,7 @@ defmodule CLITest do
   end
 
   test "" do
-    assert parse_args(["package_name", "-b", "-t"]) == {"package_name", [bin: true, test: true]}
+    assert parse_args(["package_name", "-b", "-t"]) == {"package_name", [bin: true]}
   end
 
 end
