@@ -10,7 +10,7 @@ defmodule Ek do
     end
   end
 
-  defp _generate_pkg(name, path, opts) do
+  defp _generate_pkg(name, _path, _opts) do
     assigns = [name: name]
     create_file "README.md", readme_template(assigns)
     create_file "Cask", cask_template(assigns)
