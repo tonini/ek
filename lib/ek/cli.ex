@@ -38,7 +38,7 @@ defmodule Ek.CLI do
   end
 
   def process(:version) do
-    IO.puts "ek version #{_version}"
+    Mix.shell.info "ek version #{_version}"
   end
 
   defp _version() do
