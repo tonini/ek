@@ -17,6 +17,8 @@ defmodule Ek do
     create_file ".gitignore", gitignore_text
     create_file "#{name}.el", appfile_template(assigns)
     create_file "test/test-helper.el", test_helper_template(assigns)
+
+    Mix.shell.info "Your emacs project was created successfully."
   end
 
   defp _year() do
