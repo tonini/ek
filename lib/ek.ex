@@ -17,6 +17,7 @@ defmodule Ek do
     create_file ".gitignore", gitignore_text
     create_file "#{name}.el", appfile_template(assigns)
     create_file "test/test-helper.el", test_helper_template(assigns)
+    create_file "test/#{name}-test.el", appfile_test_template(assigns)
 
     Mix.shell.info "Your emacs project was created successfully."
   end
@@ -63,6 +64,39 @@ defmodule Ek do
   (require 'ert)
 
   (provide 'test-helper)
+  """
+
+  embed_template :appfile_test, """
+  ;;; <%= @name %>-test.el ---
+
+  ;; Copyright © <%= _year %>
+  ;;
+  ;; Author:
+
+  ;; This file is not part of GNU Emacs.
+
+  ;; This program is free software: you can redistribute it and/or modify
+  ;; it under the terms of the GNU General Public License as published by
+  ;; the Free Software Foundation, either version 3 of the License, or
+  ;; (at your option) any later version.
+
+  ;; This program is distributed in the hope that it will be useful,
+  ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ;; GNU General Public License for more details.
+
+  ;; You should have received a copy of the GNU General Public License
+  ;; along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  ;;; Commentary:
+
+  ;;
+
+  ;;; Code:
+
+  (provide '<%= @name %>-test)
+
+  ;;; <%= @name %>-test.el ends here
   """
 
   embed_template :appfile, """
