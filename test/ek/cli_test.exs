@@ -16,5 +16,4 @@ defmodule CLITest do
     assert parse_args(["-v"]) == :version
     assert parse_args(["--version"]) == :version
   end
-
 end
