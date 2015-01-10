@@ -27,8 +27,10 @@ defmodule Ek.CLI do
       ek PATH [OPTIONS]
 
     Options:
-      -b, --bin   Generate a binary directory for your package
-      -t, --test  Generate a test directory for your package
+      -b, --bin      Generate a binary directory for your package
+      -t, --test     Generate a test directory for your package
+      -h, --help     Shows this help message and quit
+      -v, --version  Shows ek version number and quit
 
     Creates a skeleton for creating an emacs package
     """
