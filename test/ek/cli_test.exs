@@ -8,8 +8,13 @@ defmodule CLITest do
     assert parse_args(["--help"]) == :help
   end
 
-  test "" do
-    assert parse_args(["package_name", "-b", "-t"]) == {"package_name", [bin: true]}
+  test "package name and options returned" do
+    assert parse_args(["package_name", "-b", "-t"]) == {"package_name", [bin: true, test: true]}
+  end
+
+  test ":version returned by option parsing with -v and --version options" do
+    assert parse_args(["-v"]) == :version
+    assert parse_args(["--version"]) == :version
   end
 
 end

@@ -7,13 +7,13 @@ defmodule Ek.CLI do
 
   def parse_args(argv) do
     parse = OptionParser.parse(argv,
-                               switches: [help: :boolean],
-                               aliases:  [h: :help, b: :bin])
+                               aliases: [h: :help, b: :bin, t: :test, v: :version])
 
     case parse do
-      {[help: true], _, _} -> :help
-      {opts, [name|_], _}  -> {name, opts}
-      _ -> :help
+      {[help: true], _, _}    -> :help
+      {[version: true], _, _} -> :version
+      {opts, [name|_], _}     -> {name, opts}
+      _                       -> :help
     end
   end
 
