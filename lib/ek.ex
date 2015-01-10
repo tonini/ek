@@ -6,18 +6,21 @@ defmodule Ek do
     File.mkdir_p!(path)
 
     File.cd! path, fn ->
-      _generate_pkg(name, path, opts)
+      _generate_pkg(name, opts)
     end
   end
 
-  defp _generate_pkg(name, _path, _opts) do
+  defp _generate_pkg(name, opts) do
     assigns = [name: name]
     create_file "README.md", readme_template(assigns)
     create_file "Cask", cask_template(assigns)
     create_file ".gitignore", gitignore_text
     create_file "#{name}.el", appfile_template(assigns)
-    create_file "test/test-helper.el", test_helper_template(assigns)
-    create_file "test/#{name}-test.el", appfile_test_template(assigns)
+
+    if opts[:test] do
+      create_file "test/test-helper.el", test_helper_template(assigns)
+      create_file "test/#{name}-test.el", appfile_test_template(assigns)
+    end
 
     Mix.shell.info "Your emacs project was created successfully."
   end
