@@ -1,4 +1,5 @@
 ExUnit.start()
+Mix.shell(Mix.Shell.Process)
 Application.put_env(:app, :colors, [enabled: false])
 
 defmodule EkTestCase.Case do
