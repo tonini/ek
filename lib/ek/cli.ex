@@ -37,4 +37,18 @@ defmodule Ek.CLI do
     exit {:shutdown, 1}
   end
 
+  def process(:version) do
+    IO.puts "ek version #{_version}"
+  end
+
+  defp _version() do
+    version = Ek.Mixfile.project[:version]
+    {:ok, version} = Version.parse(version)
+    "#{version.major}.#{version.minor}" <>
+      case version.pre do
+        [h|_] -> "-#{h}"
+        []    -> ""
+      end
+  end
+
 end
