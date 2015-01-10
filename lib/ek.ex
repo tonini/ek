@@ -22,6 +22,10 @@ defmodule Ek do
       create_file "test/#{name}-test.el", appfile_test_template(assigns)
     end
 
+    if opts[:bin] do
+      create_file "bin/#{name}", ""
+    end
+
     Mix.shell.info "Your emacs project was created successfully."
   end
 

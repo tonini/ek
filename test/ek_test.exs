@@ -132,6 +132,14 @@ defmodule EkTest do
     end
   end
 
+    test "create a pkg file/dir skeleton with a bin directory" do
+    in_tmp "example", fn ->
+      Ek.generate_pkg("example", [bin: true])
+
+      assert_received {:mix_shell, :info, ["* creating bin/example"]}
+    end
+  end
+
   defp _year() do
     { year, _, _ } = :erlang.date
     year
