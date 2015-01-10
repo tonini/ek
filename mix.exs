@@ -18,6 +18,7 @@ defmodule Ek.Mixfile do
   end
 
   defp escript_config do
-    [ main_module: Ek.CLI ]
+    [main_module: Ek.CLI,
+     path: "bin/ek"]
   end
 end
