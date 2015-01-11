@@ -20,7 +20,7 @@ Just use the following `wget` command to get `ek` into your home bin directory. 
 
 ## Usage
 
-![ek](http://i.imgur.com/jauihWZ.png)
+![ek](http://i.imgur.com/oUgUm7t.png)
 
 ## Contributing
 
