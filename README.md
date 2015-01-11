@@ -1,6 +1,6 @@
 # ek
 
-My personal emacs package creator. (**beta status**)
+My personal emacs package creator.
 
 There is no standart how to build an emacs package, and the idea behind `ek` is definitly not to come up with something like that.
 `ek` is just my personal CLI tool for my daily emacs lisp hacking. There are conventions in the Emacs community how emacs packages are structured
