@@ -13,13 +13,15 @@ defmodule Ek do
   defp _generate_pkg(name, opts) do
     assigns = [name: name]
     create_file "README.md", readme_template(assigns)
-    create_file "Cask", cask_template(assigns)
     create_file ".gitignore", gitignore_text
     create_file "#{name}.el", appfile_template(assigns)
 
     if opts[:test] do
+      create_file "Cask", cask_for_test_template(assigns)
       create_file "test/test-helper.el", test_helper_template(assigns)
       create_file "test/#{name}-test.el", appfile_test_template(assigns)
+    else
+      create_file "Cask", cask_template(assigns)
     end
 
     if opts[:bin] do
@@ -42,6 +44,16 @@ defmodule Ek do
   """
 
   embed_template :cask, """
+  (source gnu)
+  (source melpa)
+
+  (package-file "<%= @name %>.el")
+
+  (development
+    (depends-on "f"))
+  """
+
+  embed_template :cask_for_test, """
   (source gnu)
   (source melpa)
 

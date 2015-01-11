@@ -22,8 +22,7 @@ defmodule EkTest do
         (package-file "example.el")
 
         (development
-          (depends-on "f")
-          (depends-on "ert-runner"))
+          (depends-on "f"))
         """
       end
 
@@ -78,6 +77,19 @@ defmodule EkTest do
     in_tmp "example", fn ->
       Ek.generate_pkg("example", [test: true])
 
+      assert_file "example/Cask", fn(content) ->
+        assert content =~ """
+        (source gnu)
+        (source melpa)
+
+        (package-file "example.el")
+
+        (development
+          (depends-on "f")
+          (depends-on "ert-runner"))
+        """
+      end
+
       assert_file "example/test/test-helper.el", fn(content) ->
         assert content =~ """
         (require 'f)
@@ -129,6 +141,9 @@ defmodule EkTest do
         ;;; example-test.el ends here
         """
       end
+
+      assert_received {:mix_shell, :info, ["* creating test/test-helper.el"]}
+      assert_received {:mix_shell, :info, ["* creating test/example-test.el"]}
     end
   end
 
