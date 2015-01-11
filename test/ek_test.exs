@@ -26,6 +26,32 @@ defmodule EkTest do
         """
       end
 
+      assert_file "example/Makefile", fn(content) ->
+        assert content =~ """
+        EMACS ?= emacs
+        CASK ?= cask
+
+        all: test
+
+        test: clean-elc
+                ${MAKE} unit
+                ${MAKE} compile
+                ${MAKE} unit
+                ${MAKE} clean-elc
+
+        unit:
+                ${CASK} exec ert-runner
+
+        compile:
+                ${CASK} build
+
+        clean-elc:
+                rm -f example.elc
+
+        .PHONY: all test unit compile
+        """
+      end
+
       assert_file "example/example.el", fn(content) ->
         assert content =~ """
         ;;; example.el ---
@@ -66,6 +92,7 @@ defmodule EkTest do
         """
 
         assert_received {:mix_shell, :info, ["* creating Cask"]}
+        assert_received {:mix_shell, :info, ["* creating Makefile"]}
         assert_received {:mix_shell, :info, ["* creating README.md"]}
         assert_received {:mix_shell, :info, ["* creating example.el"]}
         assert_received {:mix_shell, :info, ["* creating .gitignore"]}

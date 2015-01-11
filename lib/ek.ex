@@ -12,6 +12,7 @@ defmodule Ek do
 
   defp _generate_pkg(name, opts) do
     assigns = [name: name]
+    create_file "Makefile", makefile_template(assigns)
     create_file "README.md", readme_template(assigns)
     create_file ".gitignore", gitignore_text
     create_file "#{name}.el", appfile_template(assigns)
@@ -35,6 +36,30 @@ defmodule Ek do
     { year, _, _ } = :erlang.date
     year
   end
+
+  embed_template :makefile, """
+  EMACS ?= emacs
+  CASK ?= cask
+
+  all: test
+
+  test: clean-elc
+          ${MAKE} unit
+          ${MAKE} compile
+          ${MAKE} unit
+          ${MAKE} clean-elc
+
+  unit:
+          ${CASK} exec ert-runner
+
+  compile:
+          ${CASK} build
+
+  clean-elc:
+          rm -f <%= @name %>.elc
+
+  .PHONY: all test unit compile
+  """
 
   embed_template :readme, """
   <%= @name %>
