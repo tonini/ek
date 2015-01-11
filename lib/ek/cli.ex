@@ -1,5 +1,7 @@
 defmodule Ek.CLI do
 
+  @version "0.1.0"
+
   def main(argv) do
     parse_args(argv)
     |> process
@@ -42,8 +44,7 @@ defmodule Ek.CLI do
   end
 
   defp _version() do
-    version = Ek.Mixfile.project[:version]
-    {:ok, version} = Version.parse(version)
+    {:ok, version} = Version.parse(@version)
     "#{version.major}.#{version.minor}" <>
       case version.pre do
         [h|_] -> "-#{h}"
