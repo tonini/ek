@@ -21,3 +21,22 @@ Just use the following `wget` command to get `ek` into your home bin directory. 
 ## Usage
 
 ![ek](http://i.imgur.com/jauihWZ.png)
+
+## Contributing
+
+Contributions are very welcome!
+
+1. Fork ek
+2. Create a topic branch - `git checkout -b my_branch`
+4. Push to your branch - `git push origin my_branch`
+5. Send me a pull-request for your topic branch
+6. That's it!
+
+## License
+
+Copyright © 2015 Samuel Tonini and
+[contributors](https://github.com/tonini/ek/contributors).
+
+See [LICENSE](LICENSE) for details.
+
+[badge-license]: https://img.shields.io/badge/license-GPL_3-green.svg
