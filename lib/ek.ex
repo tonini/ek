@@ -4,7 +4,6 @@ defmodule Ek do
   def generate_pkg(path, opts) do
     name = Path.basename(Path.expand(path))
     File.mkdir_p!(path)
-
     File.cd! path, fn ->
       _generate_pkg(name, opts)
     end
