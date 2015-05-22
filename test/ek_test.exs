@@ -174,7 +174,7 @@ defmodule EkTest do
     end
   end
 
-    test "create a pkg file/dir skeleton with a bin directory" do
+  test "create a pkg file/dir skeleton with a bin directory" do
     in_tmp "example", fn ->
       Ek.generate_pkg("example", [bin: true])
 
